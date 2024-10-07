@@ -10,7 +10,7 @@ namespace fluentflow
         /// <summary>
         /// Represents the last node added to the tree (after End() was called)
         /// </summary>
-        INodeBase? lastPoppedNode;
+        IControlNode? lastPoppedNode;
         Stack<IControlNode> controlNodeStack = new Stack<IControlNode>();
 
         //Task node builders
@@ -73,7 +73,7 @@ namespace fluentflow
         /// <summary>
         /// Build the behaviour
         /// </summary>
-        public INodeBase Build()
+        public IControlNode Build()
         {
             if(lastPoppedNode == null)
             {

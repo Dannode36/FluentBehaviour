@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fluentflow", "fluentflow.csproj", "{159B37DA-5FCC-48E3-B033-C735789FC01C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentBehaviour", "FluentBehaviour.csproj", "{159B37DA-5FCC-48E3-B033-C735789FC01C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
