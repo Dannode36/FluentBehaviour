@@ -5,12 +5,12 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  
-	<AssemblyName>FluentFlow</AssemblyName>
+	<AssemblyName>FluentBehaviour</AssemblyName>
 	<AssemblyVersion>0.1.0</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<Version>$(AssemblyVersion)</Version>
 	<Authors>Dannode36</Authors>
-	<Title>FluentFlow</Title>
+	<Title>FluentBehaviour</Title>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<IncludeSymbols>False</IncludeSymbols>
