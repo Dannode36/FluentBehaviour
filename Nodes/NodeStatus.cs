@@ -1,4 +1,4 @@
-﻿namespace fluentflow.Nodes
+﻿namespace FluentBehaviour.Nodes
 {
     public enum NodeStatus
     {

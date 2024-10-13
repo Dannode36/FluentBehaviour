@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace fluentflow.Nodes.Control
+namespace FluentBehaviour.Nodes
 {
-    public class InvertNode : IControlNode
+    public class Invert : IControlNode
     {
         public string Name { get; set; }
         private INodeBase? childNode;
 
-        public InvertNode(string name)
+        public Invert(string name)
         {
             Name = name;
         }
 
-        public void AddChild(INodeBase node)
+        public IControlNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {
@@ -21,6 +20,7 @@ namespace fluentflow.Nodes.Control
             }
 
             childNode = node;
+            return this;
         }
 
         public NodeStatus Tick(float deltaTime)

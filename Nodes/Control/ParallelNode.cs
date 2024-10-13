@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace fluentflow.Nodes.Control
+namespace FluentBehaviour.Nodes
 {
     public class ParallelNode : IControlNode
     {
@@ -12,9 +12,10 @@ namespace fluentflow.Nodes.Control
             Name = name;
         }
 
-        public void AddChild(INodeBase node)
+        public IControlNode AddChild(INodeBase node)
         {
             children.Add(node);
+            return this;
         }
 
         public NodeStatus Tick(float deltaTime)

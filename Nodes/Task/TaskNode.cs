@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace fluentflow.Nodes
+namespace FluentBehaviour.Nodes
 {
     public class TaskNode : INodeBase
     {

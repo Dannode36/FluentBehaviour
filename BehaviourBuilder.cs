@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using fluentflow.Nodes;
-using fluentflow.Nodes.Control;
+using FluentBehaviour.Nodes;
 
-namespace fluentflow
+namespace FluentBehaviour
 {
     public class BehaviourBuilder
     {
@@ -31,6 +30,10 @@ namespace fluentflow
         {
             return Task(name, t => fn(t) ? NodeStatus.Success : NodeStatus.Failure);
         }
+        public BehaviourBuilder Wait(string name, float seconds)
+        {
+            return Task(name, t => fn(t) ? NodeStatus.Success : NodeStatus.Failure);
+        }
 
         //Control node builders
         public BehaviourBuilder Sequence(string name)
@@ -50,7 +53,7 @@ namespace fluentflow
         }
         public BehaviourBuilder Invert(string name)
         {
-            AddControlNodeToStack(new InvertNode(name));
+            AddControlNodeToStack(new Invert(name));
             return this;
         }
 
@@ -73,7 +76,11 @@ namespace fluentflow
         /// <summary>
         /// Build the behaviour
         /// </summary>
-        public IControlNode Build()
+        public Behaviour Build()
+        {
+            return Build("New Behaviour");
+        }
+        public Behaviour Build(string name)
         {
             if(lastPoppedNode == null)
             {
@@ -85,7 +92,7 @@ namespace fluentflow
                 {
                     throw new ApplicationException("Call End() before building the tree");
                 }
-                return lastPoppedNode;
+                return new Behaviour(name, lastPoppedNode);
             }
         }
 
