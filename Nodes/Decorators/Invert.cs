@@ -23,14 +23,14 @@ namespace FluentBehaviour.Nodes
             return this;
         }
 
-        public NodeStatus Tick(float deltaTime)
+        public NodeStatus Tick(TimeData time)
         {
             if (childNode == null)
             {
                 throw new Exception("InverterNode must have a child node!");
             }
 
-            var result = childNode.Tick(deltaTime);
+            var result = childNode.Tick(time);
 
             if (result == NodeStatus.Failure)
             {

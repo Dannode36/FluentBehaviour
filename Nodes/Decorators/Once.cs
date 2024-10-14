@@ -25,7 +25,7 @@ namespace FluentBehaviour.Nodes
             return this;
         }
 
-        public NodeStatus Tick(float deltaTime)
+        public NodeStatus Tick(TimeData time)
         {
             if (childNode == null)
             {
@@ -37,7 +37,7 @@ namespace FluentBehaviour.Nodes
                 return NodeStatus.Success;
             }
 
-            childNode.Tick(deltaTime);
+            childNode.Tick(time);
             hasRun = true;
             return NodeStatus.Failure;
         }

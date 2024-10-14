@@ -2,12 +2,12 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class SequnceNode : IControlNode
+    public class SelectNode : IControlNode
     {
         public string Name { get; set; }
         private List<INodeBase> children = new List<INodeBase>();
 
-        public SequnceNode(string name)
+        public SelectNode(string name)
         {
             Name = name;
         }
@@ -18,17 +18,18 @@ namespace FluentBehaviour.Nodes
             return this;
         }
 
-        public NodeStatus Tick(float deltaTime)
+        public NodeStatus Tick(TimeData time)
         {
-            foreach (INodeBase child in children)
+            foreach (var child in children)
             {
-                NodeStatus childStatus = child.Tick(deltaTime);
-                if (childStatus != NodeStatus.Success)
+                var childStatus = child.Tick(time);
+                if (childStatus != NodeStatus.Failure)
                 {
                     return childStatus;
                 }
             }
-            return NodeStatus.Success;
+
+            return NodeStatus.Failure;
         }
     }
 }

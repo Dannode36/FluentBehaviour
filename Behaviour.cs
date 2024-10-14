@@ -8,16 +8,20 @@ namespace FluentBehaviour
     {
         public string Name { get; set; }
         public IControlNode Root { get; private set; }
-
-        public NodeStatus Tick(float deltaTime)
-        {
-            return Root.Tick(deltaTime);
-        }
+        private readonly TimeData time;
 
         public Behaviour(string name, IControlNode root)
         {
             Name = name;
             Root = root;
+            time = new TimeData();
+        }
+
+        public NodeStatus Tick(float deltaTime)
+        {
+            time.TotalTime += deltaTime;
+            time.DeltaTime = deltaTime;
+            return Root.Tick(time);
         }
     }
 }

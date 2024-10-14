@@ -23,14 +23,14 @@ namespace FluentBehaviour.Nodes
             return this;
         }
 
-        public NodeStatus Tick(float deltaTime)
+        public NodeStatus Tick(TimeData time)
         {
             if (childNode == null)
             {
                 throw new Exception("AlwaysNode must have a child node!");
             }
 
-            childNode.Tick(deltaTime);
+            childNode.Tick(time);
             return NodeStatus.Running;
         }
     }

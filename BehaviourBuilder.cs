@@ -13,7 +13,7 @@ namespace FluentBehaviour
         Stack<IControlNode> controlNodeStack = new Stack<IControlNode>();
 
         //Task node builders
-        public BehaviourBuilder Task(string name, Func<float, NodeStatus> task)
+        public BehaviourBuilder Task(string name, Func<TimeData, NodeStatus> task)
         {
             if(controlNodeStack.Count > 0)
             {
@@ -26,13 +26,22 @@ namespace FluentBehaviour
 
             return this;
         }
-        public BehaviourBuilder Condition(string name, Func<float, bool> fn)
+        public BehaviourBuilder Condition(string name, Func<TimeData, bool> fn)
         {
             return Task(name, t => fn(t) ? NodeStatus.Success : NodeStatus.Failure);
         }
         public BehaviourBuilder Wait(string name, float seconds)
         {
-            return Task(name, t => fn(t) ? NodeStatus.Success : NodeStatus.Failure);
+            if (controlNodeStack.Count > 0)
+            {
+                controlNodeStack.Peek().AddChild(new Wait(name, seconds));
+            }
+            else
+            {
+                throw new Exception("TaskNode must be a child of a control node");
+            }
+
+            return this;
         }
 
         //Control node builders

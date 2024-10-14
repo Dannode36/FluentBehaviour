@@ -7,6 +7,6 @@ namespace FluentBehaviour.Nodes
     public interface INodeBase
     {
         public string Name { get; set; }
-        NodeStatus Tick(float deltaTime);
+        NodeStatus Tick(TimeData time);
     }
 }
