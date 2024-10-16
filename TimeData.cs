@@ -2,7 +2,7 @@
 {
     public class TimeData
     {
-        public float DeltaTime;
-        public float TotalTime;
+        public double DeltaTime;
+        public double TotalTime;
     }
 }

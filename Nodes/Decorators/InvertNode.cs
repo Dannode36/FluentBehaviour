@@ -2,12 +2,12 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class Invert : IControlNode
+    public class InvertNode : IControlNode
     {
         public string Name { get; set; }
         private INodeBase? childNode;
 
-        public Invert(string name)
+        public InvertNode(string name)
         {
             Name = name;
         }

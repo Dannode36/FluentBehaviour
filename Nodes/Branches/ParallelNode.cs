@@ -24,7 +24,13 @@ namespace FluentBehaviour.Nodes
 
             foreach (INodeBase node in children)
             {
-                if(node.Tick(time) == NodeStatus.Failure)
+                NodeStatus childStatus = node.Tick(time);
+
+                if(childStatus == NodeStatus.Skip)
+                {
+                    continue;
+                }
+                else if (node.Tick(time) == NodeStatus.Failure)
                 {
                     hasChildFailed = true;
                 }

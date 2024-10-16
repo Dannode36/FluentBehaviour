@@ -2,23 +2,26 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class Once : IControlNode
+    public class OnceNode : IControlNode
     {
         public string Name { get; set; }
+        public bool ReturnChildStatus { get; set; }
         private INodeBase? childNode;
+        private NodeStatus childNodeStatus;
         private bool hasRun;
 
-        public Once(string name)
+        public OnceNode(string name, bool returnChildStatus = false)
         {
             Name = name;
             hasRun = false;
+            ReturnChildStatus = returnChildStatus;
         }
 
         public IControlNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {
-                throw new Exception("AlwaysNode cannot have more than one child");
+                throw new Exception("OnceNode cannot have more than one child");
             }
 
             childNode = node;
@@ -29,17 +32,17 @@ namespace FluentBehaviour.Nodes
         {
             if (childNode == null)
             {
-                throw new Exception("AlwaysNode must have a child node!");
+                throw new Exception("OnceNode must have a child node!");
             }
 
             if (hasRun)
             {
-                return NodeStatus.Success;
+                return ReturnChildStatus ? childNodeStatus : NodeStatus.Skip;
             }
 
-            childNode.Tick(time);
+            childNodeStatus = childNode.Tick(time);
             hasRun = true;
-            return NodeStatus.Failure;
+            return childNodeStatus;
         }
     }
 }

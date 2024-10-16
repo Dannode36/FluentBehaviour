@@ -17,7 +17,7 @@ namespace FluentBehaviour
             time = new TimeData();
         }
 
-        public NodeStatus Tick(float deltaTime)
+        public NodeStatus Tick(double deltaTime)
         {
             time.TotalTime += deltaTime;
             time.DeltaTime = deltaTime;

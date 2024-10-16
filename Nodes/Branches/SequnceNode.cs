@@ -23,7 +23,12 @@ namespace FluentBehaviour.Nodes
             foreach (INodeBase child in children)
             {
                 NodeStatus childStatus = child.Tick(time);
-                if (childStatus != NodeStatus.Success)
+
+                if (childStatus == NodeStatus.Skip)
+                {
+                    continue;
+                }
+                else if (childStatus != NodeStatus.Success)
                 {
                     return childStatus;
                 }

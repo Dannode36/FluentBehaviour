@@ -1,23 +1,23 @@
 ﻿namespace FluentBehaviour.Nodes
 {
-    public class Wait : INodeBase
+    public class WaitNode : INodeBase
     {
         public string Name { get; set; }
         public float WaitTime { get; set; }
-        private float startTimestamp;
+        private double startTime;
 
-        public Wait(string name, float seconds)
+        public WaitNode(string name, float seconds)
         {
             Name = name;
             WaitTime = seconds;
-            startTimestamp = 0;
+            startTime = 0;
         }
 
         public NodeStatus Tick(TimeData time)
         {
-            if (time.TotalTime - startTimestamp >= WaitTime)
+            if (time.TotalTime - startTime >= WaitTime)
             {
-                startTimestamp = time.TotalTime;
+                startTime = time.TotalTime;
                 return NodeStatus.Success;
             }
             else

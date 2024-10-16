@@ -4,6 +4,7 @@
     {
         Success,
         Failure,
-        Running
+        Running,
+        Skip
     }
 }

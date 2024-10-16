@@ -2,12 +2,12 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class ForceFailure : IControlNode
+    public class ForceFailureNode : IControlNode
     {
         public string Name { get; set; }
         private INodeBase? childNode;
 
-        public ForceFailure(string name)
+        public ForceFailureNode(string name)
         {
             Name = name;
         }
@@ -16,7 +16,7 @@ namespace FluentBehaviour.Nodes
         {
             if (childNode != null)
             {
-                throw new Exception("AlwaysNode cannot have more than one child");
+                throw new Exception("ForceFailure cannot have more than one child");
             }
 
             childNode = node;
@@ -27,7 +27,7 @@ namespace FluentBehaviour.Nodes
         {
             if (childNode == null)
             {
-                throw new Exception("AlwaysNode must have a child node!");
+                throw new Exception("ForceFailure must have a child node!");
             }
 
             childNode.Tick(time);
