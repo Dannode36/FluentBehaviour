@@ -50,6 +50,11 @@ namespace FluentBehaviour
             AddControlNodeToStack(new ParallelNode(name));
             return this;
         }
+        public BehaviourBuilder RandomSelect(string name)
+        {
+            AddControlNodeToStack(new RandomSelectNode(name));
+            return this;
+        }
         public BehaviourBuilder Sequence(string name)
         {
             AddControlNodeToStack(new SequnceNode(name));
@@ -85,6 +90,11 @@ namespace FluentBehaviour
         public BehaviourBuilder Once(string name, bool returnChildStatus = false)
         {
             AddControlNodeToStack(new OnceNode(name, returnChildStatus));
+            return this;
+        }
+        public BehaviourBuilder Probability(string name, float probability)
+        {
+            AddControlNodeToStack(new ProbabilityNode(name, probability));
             return this;
         }
         public BehaviourBuilder Retry(string name, int retries)
