@@ -10,14 +10,14 @@ namespace FluentBehaviour
         /// Represents the last node added to the tree (after End() was called)
         /// </summary>
         private IBranchNode? lastPoppedNode;
-        private readonly Stack<IBranchNode> controlNodeStack = new Stack<IBranchNode>();
+        private readonly Stack<IBranchNode> branchNodeStack = new Stack<IBranchNode>();
 
         //Task node builders
         public BehaviourBuilder Task(string name, Func<TimeData, NodeStatus> task)
         {
-            if(controlNodeStack.Count > 0)
+            if(branchNodeStack.Count > 0)
             {
-                controlNodeStack.Peek().AddChild(new TaskNode(name, task));
+                branchNodeStack.Peek().AddChild(new TaskNode(name, task));
             }
             else
             {
@@ -32,9 +32,9 @@ namespace FluentBehaviour
         }
         public BehaviourBuilder Wait(string name, float seconds)
         {
-            if (controlNodeStack.Count > 0)
+            if (branchNodeStack.Count > 0)
             {
-                controlNodeStack.Peek().AddChild(new WaitNode(name, seconds));
+                branchNodeStack.Peek().AddChild(new WaitNode(name, seconds));
             }
             else
             {
@@ -115,7 +115,7 @@ namespace FluentBehaviour
         /// </summary>
         public BehaviourBuilder End()
         {
-            lastPoppedNode = controlNodeStack.Pop();
+            lastPoppedNode = branchNodeStack.Pop();
             return this;
         }
 
@@ -124,7 +124,7 @@ namespace FluentBehaviour
         /// </summary>
         public Behaviour Build(string name)
         {
-            if(lastPoppedNode == null || controlNodeStack.Count > 0)
+            if(lastPoppedNode == null || branchNodeStack.Count > 0)
             {
                 throw new Exception("Call End() before Build()");
             }
@@ -137,12 +137,12 @@ namespace FluentBehaviour
         //Helpers
         private void AddControlNodeToStack(IBranchNode node)
         {
-            if (controlNodeStack.Count > 0)
+            if (branchNodeStack.Count > 0)
             {
-                controlNodeStack.Peek().AddChild(node);
+                branchNodeStack.Peek().AddChild(node);
             }
 
-            controlNodeStack.Push(node);
+            branchNodeStack.Push(node);
         }
     }
 }
