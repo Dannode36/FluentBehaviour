@@ -7,10 +7,10 @@ namespace FluentBehaviour
     public class Behaviour
     {
         public string Name { get; set; }
-        public IControlNode Root { get; private set; }
+        public IBranchNode Root { get; private set; }
         private readonly TimeData time;
 
-        public Behaviour(string name, IControlNode root)
+        public Behaviour(string name, IBranchNode root)
         {
             Name = name;
             Root = root;

@@ -2,21 +2,21 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class ForceSuccessNode : IControlNode
+    public class AlwaysDecorator : IBranchNode
     {
         public string Name { get; set; }
         private INodeBase? childNode;
 
-        public ForceSuccessNode(string name)
+        public AlwaysDecorator(string name)
         {
             Name = name;
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {
-                throw new Exception("ForceSuccess cannot have more than one child");
+                throw new Exception("ForceRunning cannot have more than one child");
             }
 
             childNode = node;
@@ -27,11 +27,11 @@ namespace FluentBehaviour.Nodes
         {
             if (childNode == null)
             {
-                throw new Exception("ForceSuccess must have a child node!");
+                throw new Exception("ForceRunning must have a child node!");
             }
 
             childNode.Tick(time);
-            return NodeStatus.Success;
+            return NodeStatus.Running;
         }
     }
 }

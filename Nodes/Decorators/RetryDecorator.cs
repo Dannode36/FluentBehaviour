@@ -2,19 +2,19 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class RetryNode : IControlNode
+    public class RetryDecorator : IBranchNode
     {
         public string Name { get; set; }
         public int Retries { get; set; }
         private INodeBase? childNode;
 
-        public RetryNode(string name, int retries)
+        public RetryDecorator(string name, int retries)
         {
             Name = name;
             Retries = retries;
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {

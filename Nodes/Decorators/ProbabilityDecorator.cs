@@ -3,7 +3,7 @@ using System;
 
 namespace FluentBehaviour.Nodes
 {
-    public class ProbabilityNode : IControlNode
+    public class ProbabilityDecorator : IBranchNode
     {
         public string Name { get; set; }
         public float Probabilty { get; set; }
@@ -15,14 +15,14 @@ namespace FluentBehaviour.Nodes
         /// </summary>
         /// <param name="name"></param>
         /// <param name="probabilty">Probability between 0 and 1</param>
-        public ProbabilityNode(string name, float probabilty)
+        public ProbabilityDecorator(string name, float probabilty)
         {
             Name = name;
             Probabilty = probabilty;
             random = new Random();
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {

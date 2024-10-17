@@ -2,7 +2,7 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class OnceNode : IControlNode
+    public class OnceDecorator : IBranchNode
     {
         public string Name { get; set; }
         public bool ReturnChildStatus { get; set; }
@@ -10,14 +10,14 @@ namespace FluentBehaviour.Nodes
         private NodeStatus childNodeStatus;
         private bool hasRun;
 
-        public OnceNode(string name, bool returnChildStatus = false)
+        public OnceDecorator(string name, bool returnChildStatus = false)
         {
             Name = name;
             hasRun = false;
             ReturnChildStatus = returnChildStatus;
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {

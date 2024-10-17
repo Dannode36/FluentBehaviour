@@ -9,8 +9,8 @@ namespace FluentBehaviour
         /// <summary>
         /// Represents the last node added to the tree (after End() was called)
         /// </summary>
-        private IControlNode? lastPoppedNode;
-        private readonly Stack<IControlNode> controlNodeStack = new Stack<IControlNode>();
+        private IBranchNode? lastPoppedNode;
+        private readonly Stack<IBranchNode> controlNodeStack = new Stack<IBranchNode>();
 
         //Task node builders
         public BehaviourBuilder Task(string name, Func<TimeData, NodeStatus> task)
@@ -67,44 +67,44 @@ namespace FluentBehaviour
         }
 
         //Decorater node builders
-        public BehaviourBuilder ForceFailure(string name)
+        public BehaviourBuilder Always(string name)
         {
-            AddControlNodeToStack(new ForceFailureNode(name));
+            AddControlNodeToStack(new AlwaysDecorator(name));
             return this;
         }
-        public BehaviourBuilder ForceRunning(string name)
+        public BehaviourBuilder Fail(string name)
         {
-            AddControlNodeToStack(new ForceRunningNode(name));
+            AddControlNodeToStack(new FailDecorator(name));
             return this;
         }
-        public BehaviourBuilder ForceSuccess(string name)
+        public BehaviourBuilder Succeed(string name)
         {
-            AddControlNodeToStack(new ForceSuccessNode(name));
+            AddControlNodeToStack(new SucceedDecorator(name));
             return this;
         }
         public BehaviourBuilder Invert(string name)
         {
-            AddControlNodeToStack(new InvertNode(name));
+            AddControlNodeToStack(new InvertDecorator(name));
             return this;
         }
         public BehaviourBuilder Once(string name, bool returnChildStatus = false)
         {
-            AddControlNodeToStack(new OnceNode(name, returnChildStatus));
+            AddControlNodeToStack(new OnceDecorator(name, returnChildStatus));
             return this;
         }
         public BehaviourBuilder Probability(string name, float probability)
         {
-            AddControlNodeToStack(new ProbabilityNode(name, probability));
+            AddControlNodeToStack(new ProbabilityDecorator(name, probability));
             return this;
         }
         public BehaviourBuilder Retry(string name, int retries)
         {
-            AddControlNodeToStack(new RetryNode(name, retries));
+            AddControlNodeToStack(new RetryDecorator(name, retries));
             return this;
         }
 
         //Builder functions
-        public BehaviourBuilder Merge(IControlNode subTree)
+        public BehaviourBuilder Merge(IBranchNode subTree)
         {
             AddControlNodeToStack(subTree);
             return this;
@@ -135,7 +135,7 @@ namespace FluentBehaviour
         }
 
         //Helpers
-        private void AddControlNodeToStack(IControlNode node)
+        private void AddControlNodeToStack(IBranchNode node)
         {
             if (controlNodeStack.Count > 0)
             {

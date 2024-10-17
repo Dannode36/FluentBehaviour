@@ -16,6 +16,10 @@
 	<IncludeSymbols>False</IncludeSymbols>
 	<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<Description>Light and powerful behaviour tree framework with a fluent API, targeting .NET Standard 2.1</Description>
+	<PackageProjectUrl>https://github.com/Dannode36/FluentBehaviour</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/Dannode36/FluentBehaviour</RepositoryUrl>
+	<PackageTags>behaviour tree; tree; node; behaviour; dotnet; standard</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

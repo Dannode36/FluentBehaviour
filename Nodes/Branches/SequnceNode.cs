@@ -2,7 +2,7 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class SequnceNode : IControlNode
+    public class SequnceNode : IBranchNode
     {
         public string Name { get; set; }
         private List<INodeBase> children = new List<INodeBase>();
@@ -12,7 +12,7 @@ namespace FluentBehaviour.Nodes
             Name = name;
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             children.Add(node);
             return this;

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace FluentBehaviour.Nodes
 {
-    public interface IControlNode : INodeBase
+    public interface IBranchNode : INodeBase
     {
-        public IControlNode AddChild(INodeBase node);
+        public IBranchNode AddChild(INodeBase node);
     }
 }

@@ -2,17 +2,17 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class InvertNode : IControlNode
+    public class InvertDecorator : IBranchNode
     {
         public string Name { get; set; }
         private INodeBase? childNode;
 
-        public InvertNode(string name)
+        public InvertDecorator(string name)
         {
             Name = name;
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             if (childNode != null)
             {

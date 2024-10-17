@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FluentBehaviour.Nodes
 {
-    public class RandomSelectNode : IControlNode
+    public class RandomSelectNode : IBranchNode
     {
         public string Name { get; set; }
         private List<INodeBase> children = new List<INodeBase>();
@@ -15,7 +15,7 @@ namespace FluentBehaviour.Nodes
             random = new Random();
         }
 
-        public IControlNode AddChild(INodeBase node)
+        public IBranchNode AddChild(INodeBase node)
         {
             children.Add(node);
             return this;
