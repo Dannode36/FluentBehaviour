@@ -2,12 +2,12 @@
 
 namespace FluentBehaviour.Nodes
 {
-    public class SelectNode : IBranchNode
+    public class SelectorNode : IBranchNode
     {
         public string Name { get; set; }
         private List<INodeBase> children = new List<INodeBase>();
 
-        public SelectNode(string name)
+        public SelectorNode(string name)
         {
             Name = name;
         }

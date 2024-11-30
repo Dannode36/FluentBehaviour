@@ -60,9 +60,9 @@ namespace FluentBehaviour
             AddControlNodeToStack(new SequnceNode(name));
             return this;
         }
-        public BehaviourBuilder Select(string name)
+        public BehaviourBuilder Selector(string name)
         {
-            AddControlNodeToStack(new SelectNode(name));
+            AddControlNodeToStack(new SelectorNode(name));
             return this;
         }
 
