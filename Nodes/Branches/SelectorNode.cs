@@ -34,6 +34,7 @@ namespace FluentBehaviour.Nodes
                 }
             }
 
+            //All nodes failed or skipped
             return NodeStatus.Failure;
         }
     }

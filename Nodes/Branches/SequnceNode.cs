@@ -33,6 +33,8 @@ namespace FluentBehaviour.Nodes
                     return childStatus;
                 }
             }
+
+            //All nodes succeeded or skipped
             return NodeStatus.Success;
         }
     }
